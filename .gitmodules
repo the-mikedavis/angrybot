@@ -1,0 +1,3 @@
+[submodule "meArm"]
+	path = meArm
+	url = github.com:yorkhackspace/meArm.git
