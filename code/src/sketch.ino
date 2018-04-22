@@ -1,8 +1,13 @@
+#include "meArm.h"
+#include <Servo.h>
 
-void setup()
-{
+meArm arm;
+
+void setup() {
+  arm.begin(11, 10, 9, 6);
+  arm.openGripper();
 }
 
-void loop()
-{
+void loop() {
+  arm.gotoPoint(0, 100, 50);
 }
