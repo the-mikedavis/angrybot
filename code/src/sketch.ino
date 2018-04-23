@@ -1,5 +1,15 @@
 #include <meArm.h>
 #include <Servo.h>
+#define PING 7
+#define LIMIT 120  // mm
+#define LOOK 300 //ms
+
+void scan();
+void rush();
+void stateMachine();
+
+long mm = 0l;
+float angle;
 
 meArm arm(
     180, 21, -pi/2, pi/2,     // Base
@@ -10,19 +20,62 @@ meArm arm(
 void setup() {
   arm.begin(11, 10, 9, 6);
   arm.closeGripper();
-  arm.gotoPoint(0, 100, 50);
+  arm.gotoPointCylinder(0, 100, 50);
+  Serial.begin(9600);
 }
 
 void loop() {
-  /*
-  //Go up and left to grab something
-  arm.gotoPoint(-80,100,140);
-  arm.closeGripper();
-  //Go down, forward and right to drop it
-  arm.gotoPoint(70,200,10);
+  Serial.print(mm);
+  Serial.println(" mm.");
+  stateMachine();
+}
+
+//  decide where to go based on the state
+//  could be written more succintly, but this has room for growth
+void stateMachine() {
+  if (mm >= LIMIT) scan();
+  else rush();
+}
+
+void scan () {
+  int i;
+  angle = -pi/4;
+  for (i = 0; i < 3; i++) {
+    arm.gotoPointCylinder(angle, 100, 50);
+    long duration;
+    pinMode(PING, OUTPUT);
+    digitalWrite(PING, LOW);
+    delayMicroseconds(2);
+    digitalWrite(PING, HIGH);
+    delayMicroseconds(5);
+    digitalWrite(PING, LOW);
+
+    pinMode(PING, INPUT);
+    duration = pulseIn(PING, HIGH);
+    mm = duration / 29 / 2 * 10;
+
+    if (mm < LIMIT) return; // break to attack
+
+    angle += pi / 4;
+    delay(LOOK);
+  }
+}
+
+void rush() {
   arm.openGripper();
-  //Back to start position
-  arm.gotoPoint(0,100,50);
+  delay(LOOK);
+  arm.closeGripper();
+  delay(LOOK);
+  /*
+  int x, y;
+  x = mm * sin(angle);
+  y = mm * cos(angle);
+  if (arm.isReachable(x, y, 100)) {
+    arm.gotoPoint(x, y, 100);
+    delay(LOOK);
+    arm.gotoPointCylinder(angle, 100, 50);
+    delay(LOOK);
+  } else Serial.println("Not reachable!");
   */
-  delay(1000);
+  mm = 30000;
 }
