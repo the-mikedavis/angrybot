@@ -63,20 +63,28 @@ void scan () {
 }
 
 void rush() {
+  /*
   arm.openGripper();
   delay(LOOK);
   arm.closeGripper();
   delay(LOOK);
-  /*
+  */
   int x, y;
   x = mm * sin(angle);
   y = mm * cos(angle);
   if (arm.isReachable(x, y, 100)) {
     arm.gotoPoint(x, y, 100);
-    delay(LOOK);
+    arm.openGripper();
+    delay(LOOK / 6);
+    arm.closeGripper();
+    delay(LOOK / 6);
+    arm.openGripper();
+    delay(LOOK / 6);
+    arm.closeGripper();
+    delay(LOOK / 6);
+    //  go back to where you just were
     arm.gotoPointCylinder(angle, 100, 50);
     delay(LOOK);
   } else Serial.println("Not reachable!");
-  */
   mm = 30000;
 }
