@@ -8,16 +8,9 @@ void scan();
 void rush();
 void stateMachine();
 
-long mm = 0l;
+long mm = 30000l;
 float angle;
 
-/*
-meArm arm(
-    180, 21, -pi/2, pi/2,     // Base
-    102, 15, pi/4, 3*pi/4,    // Shoulder
-    148, 106, 0, -pi/4,       // Elbow
-    70, 125, pi/2, 0);        // Gripper
-    */
 meArm arm(
     180, 0, -pi/2, pi/2,     // Base
     168, 78, pi/4, 3*pi/4,    // Shoulder
@@ -47,7 +40,8 @@ void stateMachine() {
 void scan () {
   int i;
   angle = -pi/4;
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < 4; i++) {
+    if (i == 3) angle -= pi/2;
     arm.gotoPointCylinder(angle, 100, 50);
     long duration;
     pinMode(PING, OUTPUT);
