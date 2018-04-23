@@ -11,11 +11,18 @@ void stateMachine();
 long mm = 0l;
 float angle;
 
+/*
 meArm arm(
     180, 21, -pi/2, pi/2,     // Base
     102, 15, pi/4, 3*pi/4,    // Shoulder
     148, 106, 0, -pi/4,       // Elbow
     70, 125, pi/2, 0);        // Gripper
+    */
+meArm arm(
+    180, 0, -pi/2, pi/2,     // Base
+    168, 78, pi/4, 3*pi/4,    // Shoulder
+    141, 111, 0, -pi/4,       // Elbow
+    70, 101, pi/2, 0);        // Gripper
 
 void setup() {
   arm.begin(11, 10, 9, 6);
