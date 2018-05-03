@@ -72,8 +72,8 @@ void rush() {
   int x, y;
   x = mm * sin(angle);
   y = mm * cos(angle);
-  if (arm.isReachable(x, y, 100)) {
-    arm.gotoPoint(x, y, 100);
+  if (arm.isReachable(x, y, 50)) {
+    arm.gotoPointCylinder(angle, 200, 50);
     arm.openGripper();
     delay(LOOK / 6);
     arm.closeGripper();
