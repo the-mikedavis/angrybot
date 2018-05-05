@@ -8,9 +8,9 @@ AngryBot might be right for you.
 
 ![Imgur](https://i.imgur.com/6g96LN0.jpg)
 
-AngryBot is a MeArm: a small, dextrous, open source robot design under
+AngryBot is a MeArm: a small, dexterous, open source robot design under
 development for many years now. While it's usually meant to be laser cut
-on a sheet of acryllic, 3D printing is also a viable option. MeArm just
+on a sheet of acrylic, 3D printing is also a viable option. MeArm just
 has 4 motors which dictate its movement. With the design, some very smart
 people have solved the [inverse kinematics](https://en.wikipedia.org/wiki/Inverse_kinematics),
 which is usually a pretty difficult problem for larger robots. The inverse
@@ -114,11 +114,11 @@ In the future, I'd like to deck it out a little bit. I'd like to have an RGB
 LED on it that changes colors to red when it's gonna attack. I'd also like
 to have multiple personalities. Maybe on a clock it changes from really
 angry to really shy and runs away every time it sees something. That sort
-of Jeykll and Hyde relationship could give the character a whole lot more
+of Jekyll and Hyde relationship could give the character a whole lot more
 depth.
 
 To make these changes, I think I'd have to laser cut the robot. For whatever
-reason, the IK are off by a noticable amount. I think the blocky construction
+reason, the IK are off by a noticeable amount. I think the blocky construction
 by 3D printer is too coarse to be controlled finely. Some errors in the lining
 of up the gripper hands, for example, make the robot stop working correctly
 after a few attempts at biting.
